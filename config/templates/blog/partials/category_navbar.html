@@ -1,0 +1,19 @@
+<div class="collapse navbar-collapse nav" id="navbarResponsive">
+    <ul class="navbar-nav py-4 py-lg-0 ul-m-style">
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog:home' %}">خانه</a></li> 
+        {% for cat in category %}
+            {% if cat.parent == None %}
+                <li class="nav-item">
+                    <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog:category' cat.slug %}">{{cat.title}}</a>
+                    {% if cat.children.active %}
+                        {% include 'blog/partials/category_loop.html' %}
+                    {% endif %}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <form class="input-group input-g-my" action="{% url 'blog:search' %}">
+            <input type="text" name="q" placeholder="جستجوی متن" class="form-control rounded-end">
+            <button class="btn btn-success rounded-start btn-m-style">جستجو</button>
+    </form>
+</div>

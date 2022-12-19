@@ -1,0 +1,30 @@
+@import url('https://v1.fontapi.ir/css/Shabnam');
+
+body {
+    direction: rtl !important;
+    text-align: rtl !important;
+    font-family: Shabnam, sans-serif !important;
+}
+
+.myfont,
+.focus-input100::after {
+    font-family: Shabnam, sans-serif !important;
+}
+
+.btn-show-pass {
+    right: inherit;
+    left: 0;
+}
+
+.errors {
+    background: red;
+    color: darkred;
+    text-align: center;
+    width: max-content;
+    left: 50%;
+    top: 1.6rem;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    padding: 0.5rem;
+    border-radius: 0.6rem;
+}

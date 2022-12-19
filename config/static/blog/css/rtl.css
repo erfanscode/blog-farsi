@@ -1,0 +1,150 @@
+@font-face {
+  font-family: "vazir";
+  src: url(../css/fonts/vazir/Vazir.ttf) format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  direction: rtl;
+  text-align: right;
+  font-family: "vazir";
+}
+
+.navbar-collapse {
+  flex-grow: 0 !important;
+}
+
+header.masthead .page-heading h1,
+header.masthead .page-heading .h1,
+header.masthead .site-heading h1,
+header.masthead .site-heading .h1 {
+  font-size: 2.6rem !important;
+}
+
+.post-title {
+  font-size: 28px !important;
+}
+
+.post-subtitle {
+  font-size: 18px !important;
+}
+
+article div div div p {
+  font-family: 'vazir';
+  font-size: 1.1rem !important;
+  line-height: 1.8;
+}
+
+
+/* Navbar Dropdown submenu hover */
+.nav ul {
+  padding-right: 0;
+}
+
+.nav ul li {
+  border-bottom: none;
+  height: 2.5rem;
+  line-height: 1.5rem;
+  font-size: 1.4rem;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.nav ul li a {
+  text-decoration: none;
+  color: #000000;
+  display: block;
+  transition: .2s background-color;
+  padding: 0 2.4rem;
+}
+
+.nav ul li a:hover {
+  background-color: #5c89c7;
+  color: #ffffff;
+}
+
+.nav a {
+  border-bottom: none;
+}
+
+.nav li ul {
+  position: absolute;
+  display: none;
+  width: inherit;
+}
+
+.nav li:hover ul {
+  display: block;
+}
+
+.nav ul li ul li {
+  display: block;
+  float: none !important;
+  height: auto;
+  line-height: 2.4rem;
+}
+
+.nav ul li ul li ul {
+  position: absolute;
+  right: 100%;
+  top: 0;
+  display: none !important;
+}
+
+.nav ul > li > ul > li:hover > ul {
+  display: block !important;
+}
+
+.nav ul > li > ul > li > ul > li:hover > ul {
+  display: block !important;
+}
+
+/* Popular Articles */
+.articles_aside {
+  width: 18rem;
+  height: 10rem;
+  position: absolute;
+  left: 4rem;
+}
+
+.popular_articles {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  margin-bottom: 1rem;
+  box-shadow: -2px 2.5px #ccc;
+}
+
+
+.input-g-my {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 18rem !important;
+  /* height: 20px; */
+  margin-top: 2rem;
+  /* margin-right: 10rem; */
+  /* border-radius: 2rem !important; */
+}
+
+.btn-m-style {
+  padding: 8px 16px !important;
+}
+
+.ul-m-style {
+  margin-left: 10rem;
+}
+
+.post-meta-me {
+  display: flex;
+  font-style: normal !important;
+  font-size: 1rem !important;
+}
+
+.post-meta-me a {
+  margin: 0 8px;
+}

@@ -1,0 +1,58 @@
+{% extends 'blog/base.html' %}
+
+{% load ratings %}
+
+{% load comment_tags %}
+
+{% load base_tags %}
+
+{% block title %} {{object.title}} {% endblock %}
+
+{% block main %}
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('{{object.thumbnail.url}}'); height: 100vh;">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>{{object.title}}</h1>
+                        <p>{{ object.jpublish }}</p><br>
+                        <div>بازدید: {{object.hits.count}}</div><br>
+                        {% if article.is_special %}
+                            <span class="badge bg-danger" style="font-size: 16px; border-radius: .5rem;">ویژه</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content-->
+    <article class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <aside class="articles_aside">
+                    {% popular_articles %}
+                    {% hot_articles %}
+                </aside>
+                
+                <div class="col-md-10 col-lg-8 col-xl-7" style="text-align: justify;">
+                    {% if object.is_special %}
+                        {% if user.is_authenticated and user == object.author or user.is_special_user or user.is_superuser %}
+                            <p>{{ object.description|safe }}</p> {% ratings object %}
+                        {% else %}
+                            <p>{{ object.description|striptags|truncatewords:20 }}</p> {% ratings object %}
+                            <p class="alert alert-warning" style="font-size: 18px !important;">برای مشاهده این مقاله <a class="alert-link" href="#">اشتراک</a> ویژه تهیه کنید.</p>
+                        {% endif %}
+                    {% else %}
+                        <p>{{ object.description|safe }}</p> {% ratings object %}
+                    {% endif %}
+                    <div>
+                        {% render_comments object request %}
+                        {% include_bootstrap %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+{% endblock %}
