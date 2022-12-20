@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.utils.html import format_html
 from extentions.utils import jalali_converter
 from django.contrib.contenttypes.fields import GenericRelation
+from taggit.managers import TaggableManager
 from comment.models import Comment
 
 # My Managers:
@@ -59,6 +60,7 @@ class Article(models.Model):
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, verbose_name = 'وضعیت')
     comments = GenericRelation(Comment)
     hits = models.ManyToManyField(IPAddress, through="ArticleHit", blank=True, related_name="hits", verbose_name='بازدیدها')
+    tags = TaggableManager()
 
     class Meta:
         verbose_name = 'مقاله'

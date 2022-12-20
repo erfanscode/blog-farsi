@@ -1,10 +1,12 @@
 from ipaddress import ip_address
 from itertools import count
+from django.views import View
 from django.views.generic import ListView, DetailView
 from account.models import User
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from account.mixins import AuthorAccessMixin
+# from taggit.models import Tag
 # from django.http import HttpResponse, JsonResponse
 from .models import Article, Category
 from django.db.models import Q
@@ -21,11 +23,21 @@ from django.db.models import Q
 #         "articles": articles,
 #     }
 #     return render(request, "blog/home.html", context)
+
 class ArticleListView(ListView):
     # model = Article
     queryset = Article.objects.published()
     paginate_by = 4
-    # template_name = "blog/home.html"
+    # template_name = "blog/list.html"
+
+
+class ArticleTagList(ListView):
+    model = Article
+    template_name = 'blog/list.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        return Article.objects.filter(tags__slug=self.kwargs.get('tag_slug'))
 
 
 # def detail(request, slug):

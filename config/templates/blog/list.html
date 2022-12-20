@@ -54,6 +54,11 @@
                             <a href="{% url 'blog:category' cat.slug %}">#{{cat.title}}</a>
                         {% endfor %}
                     </div>
+                    <div>
+                        {% for tag in article.tags.all %}
+                            <a href="{% url 'blog:post_tag' tag.slug %}">{{ tag.name }}</a>
+                        {% endfor %}
+                    </div>
                     <!-- Divider-->
                     <hr class="my-4" />
                 {% empty %}

@@ -3,6 +3,7 @@ from .views import (
                         ArticleListView,
                         ArticleDetailView,
                         ArticlePreview,
+                        ArticleTagList,
                         CategoryListView,
                         AuthorListView,
                         SearchList,
@@ -12,6 +13,7 @@ app_name = "blog"
 urlpatterns = [
     path('', ArticleListView.as_view(), name="home"),
     path('page/<int:page>', ArticleListView.as_view(), name="home"),
+    path('tags/<slug:tag_slug>/', ArticleTagList.as_view(), name="post_tag"),
     # path('api', api, name="api")
     path('article/<slug:slug>', ArticleDetailView.as_view(), name="detail"),
     path('preview/<int:pk>', ArticlePreview.as_view(), name="preview"),

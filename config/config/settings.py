@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'comment',
     # "pinax.comments",
     'star_ratings',
+    'taggit',
 ]
 
 MIDDLEWARE = [
