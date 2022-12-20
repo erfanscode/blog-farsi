@@ -9,7 +9,15 @@ from account.mixins import AuthorAccessMixin
 # from taggit.models import Tag
 # from django.http import HttpResponse, JsonResponse
 from .models import Article, Category
+from taggit.models import Tag
 from django.db.models import Q
+
+
+class TagMixin(object):
+    def get_context_data(self, **kwargs):
+        context = super(TagMixin, self).get_context_data(**kwargs)
+        context['tags'] = Tag.objects.all()
+        return context
 
 # Create your views here.
 # def home(request, page=1):
@@ -24,17 +32,17 @@ from django.db.models import Q
 #     }
 #     return render(request, "blog/home.html", context)
 
-class ArticleListView(ListView):
+class ArticleListView(TagMixin, ListView):
     # model = Article
     queryset = Article.objects.published()
     paginate_by = 4
     # template_name = "blog/list.html"
 
 
-class ArticleTagList(ListView):
+class ArticleTagList(TagMixin, ListView):
     model = Article
     template_name = 'blog/list.html'
-    context_object_name = 'posts'
+    # context_object_name = 'posts'
 
     def get_queryset(self):
         return Article.objects.filter(tags__slug=self.kwargs.get('tag_slug'))

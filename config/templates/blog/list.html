@@ -26,6 +26,15 @@
                 <aside class="articles_aside">
                     {% popular_articles %}
                     {% hot_articles %}
+                    <div class="popular_articles">
+                        <h2 class="h4">برچسب ها</h2>
+                        <hr>
+                        {% for tag in tags %}
+                            <div>
+                                <a href="{% url 'blog:post_tag' tag.slug %}">{{ tag.name }}</a>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </aside>
                 
 
