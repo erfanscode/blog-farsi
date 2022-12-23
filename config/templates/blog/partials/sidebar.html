@@ -6,4 +6,9 @@
             <a href="{% url 'blog:detail' a.slug %}">{{a.title}}</a>
         </div>
     {% endfor %}
+        {% for tag in tags %}
+            <div>
+                <a href="{% url 'blog:post_tag' tag.slug %}">{{ tag.name }}</a>
+            </div>
+        {% endfor %}
 </div>

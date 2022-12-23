@@ -41,6 +41,15 @@ def hot_articles():
     }
 # End Hot
 
+# Show Tags list:
+@register.inclusion_tag("blog/partials/sidebar.html")
+def show_tags():
+    return {
+        'tags': Article.tags.all(),
+        'title':'برچسب ها',
+    }
+# End Tag
+
 @register.inclusion_tag("registration/partials/link.html")
 def link(request, link_name, content, classes):
     return {
