@@ -15,8 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.sitemaps.views import sitemap
 from account.views import Login, Register, activate
+from blog.sitemaps import BlogSitemap
 
+# Sitemap
+sitemaps = {
+    "articles": BlogSitemap,
+}
+
+# Urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("login/", Login.as_view(), name="login"),
@@ -27,7 +35,7 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('account/', include('account.urls')),
     path('comment/', include('comment.urls')),
-    # path('comments/', include("pinax.comments.urls", namespace="pinax_comments"))
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
 
 from django.conf import settings
