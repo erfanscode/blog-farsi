@@ -33,6 +33,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SITE_ID = 1
 
 # Application definition
 
@@ -44,16 +45,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'blog.apps.BlogConfig',
-    'account.apps.AccountConfig',
+    # 3rd-party
     'extentions',
     'widget_tweaks',
     'crispy_forms',
     'django_gravatar',
     'comment',
-    # "pinax.comments",
     'star_ratings',
-    'taggit'
+    'taggit',
+    # Local
+    'blog.apps.BlogConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
