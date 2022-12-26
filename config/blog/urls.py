@@ -8,6 +8,7 @@ from .views import (
                         AuthorListView,
                         SearchList,
                     )
+from .feeds import LatestPostsFeed
 
 app_name = "blog"
 urlpatterns = [
@@ -23,4 +24,5 @@ urlpatterns = [
     path('author/<slug:username>/page/<int:page>', AuthorListView.as_view(), name="author"),
     path('search/', SearchList.as_view(), name="search"),
     path('search/page/<int:page>', SearchList.as_view(), name="search"),
+    path('feed/', LatestPostsFeed(), name="feed"),
 ]   
