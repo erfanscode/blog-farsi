@@ -1,0 +1,6 @@
+env
+.env
+.env-sample
+.venv
+.git
+.gitignore
