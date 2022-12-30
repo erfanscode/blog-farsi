@@ -1,5 +1,6 @@
 from ipaddress import ip_address
 from itertools import count
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank, SearchHeadline
 from django.views import View
 from django.views.generic import ListView, DetailView
 from account.models import User
@@ -157,12 +158,22 @@ def home(request):
 #     return JsonResponse(data)
 
 class SearchList(ListView):
+    model = Article
     paginate_by = 4
     template_name = "blog/search_list.html"
 
     def get_queryset(self):
         search = self.request.GET.get('q')
-        return Article.objects.filter(Q(description__icontains=search) | Q(title__icontains=search))
+        search_vector = SearchVector("description", weight="B") + SearchVector("title", weight="A")
+        search_query = SearchQuery(search)
+        search_headline = SearchHeadline("title", search_query)
+        return (
+            Article.objects.annotate(
+                query=search_vector,
+                rank=SearchRank(search_vector, search_query))
+            .annotate(headline=search_headline)
+            .filter(rank__gte=0.3).order_by("-rank")
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
